@@ -5,6 +5,12 @@ no warnings 'experimental::signatures';
 
 our $VERSION = '0.01';
 
+=head1 NAME
+
+Net::Async::UPnP - Async Perl extension for UPnP
+
+=cut
+
 our $SSDP_ADDR = '239.255.255.250';
 our $SSDP_PORT = 1900;
 
@@ -37,6 +43,8 @@ use Scalar::Util 'weaken';
 use List::Util 'max';
 use Net::Address::IP::Local;     # ipv6 ?
 use XML::LibXML '1.170';
+
+our $VERSION = '0.01';
 
 with 'MooX::Role::EventEmitter';
 
@@ -376,6 +384,8 @@ no warnings 'experimental::signatures';
 use URI;
 use XML::LibXML '1.170';
 
+our $VERSION = '0.01';
+
 has 'ua' => (
     is => 'ro',
     weak_ref => 1,
@@ -485,6 +495,8 @@ no warnings 'experimental::signatures';
 use URI;
 use Carp 'croak';
 use Encode 'encode';
+
+our $VERSION = '0.01';
 
 around BUILDARGS => sub( $orig, $class, %args ) {
     if( exists $args{ description } and ! ref $args{ description } ) {
