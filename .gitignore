@@ -1,0 +1,16 @@
+Makefile
+Makefile.old
+*.tar.gz
+*.bak
+*.swp
+pm_to_blib
+blib/
+Net-Async-UPnP-*
+Net-Async-UPnP-*/
+.releaserc
+cover_db
+MYMETA.*
+frame-*.png
+*.pl
+.prove
+.patch
