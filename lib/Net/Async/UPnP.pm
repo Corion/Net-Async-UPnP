@@ -12,6 +12,38 @@ our $VERSION = '0.01';
 
 Net::Async::UPnP - Async Perl extension for UPnP
 
+=head1 SYNOPSIS
+
+  #!perl
+  use 5.020;
+  use feature 'signatures';
+  no warnings 'experimental::signatures';
+
+  use Net::Async::UPnP;
+  use Net::Async::UPnP::ControlPoint;
+  use IO::Async::Loop;
+
+  use Try::Tiny;
+
+  my $loop = IO::Async::Loop->new;
+  my $search = Net::Async::UPnP::ControlPoint->new();
+
+  $search->on( device => sub( $search, $dev ) {
+      say sprintf '%s (%s) at %s  UDN: %s', $dev->friendlyname, $dev->devicetype, $dev->location, $dev->udn;
+
+      for my $s ($dev->services->@*) {
+          say "+ " . sprintf '%s at %s', $s->type, $s->controlurl;
+      };
+  });
+
+  say "Starting search";
+  $search->start_search(
+      loop => $loop,
+      #st => 'urn:schemas-upnp-org:device:MediaRenderer:1',
+  );
+
+  $loop->run;
+
 =cut
 
 our $SSDP_ADDR = '239.255.255.250';
