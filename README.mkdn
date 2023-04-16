@@ -6,3 +6,66 @@
 # NAME
 
 Net::Async::UPnP - Async Perl extension for UPnP
+
+# SYNOPSIS
+
+    #!perl
+    use 5.020;
+    use feature 'signatures';
+    no warnings 'experimental::signatures';
+
+    use Net::Async::UPnP;
+    use Net::Async::UPnP::ControlPoint;
+    use IO::Async::Loop;
+
+    use Try::Tiny;
+
+    my $loop = IO::Async::Loop->new;
+    my $search = Net::Async::UPnP::ControlPoint->new();
+
+    $search->on( device => sub( $search, $dev ) {
+        say sprintf '%s (%s) at %s  UDN: %s', $dev->friendlyname, $dev->devicetype, $dev->location, $dev->udn;
+
+        for my $s ($dev->services->@*) {
+            say "+ " . sprintf '%s at %s', $s->type, $s->controlurl;
+        };
+    });
+
+    say "Starting search";
+    $search->start_search(
+        loop => $loop,
+        #st => 'urn:schemas-upnp-org:device:MediaRenderer:1',
+    );
+
+    $loop->run;
+
+# SEE ALSO
+
+[Net::UPnP](https://metacpan.org/pod/Net%3A%3AUPnP) - the module which this code is based on
+
+# REPOSITORY
+
+The public repository of this module is
+[https://github.com/Corion/net-async-upnp](https://github.com/Corion/net-async-upnp).
+
+# SUPPORT
+
+The public support forum of this module is [https://perlmonks.org/](https://perlmonks.org/).
+
+# BUG TRACKER
+
+Please report bugs in this module via the Github bug queue at
+[https://github.com/Corion/Net-Async-UPnP/issues](https://github.com/Corion/Net-Async-UPnP/issues)
+
+# AUTHOR
+
+Max Maischein `corion@cpan.org`
+
+# COPYRIGHT (c)
+
+Copyright 2010-2023 by Max Maischein `corion@cpan.org`.
+Based on Code by Satoshi Konno Copyright 2005-2018.
+
+# LICENSE
+
+It may be used, redistributed, and/or modified under the terms of BSD License.
