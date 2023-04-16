@@ -7,6 +7,7 @@ use Try::Tiny;
 use Carp 'croak';
 use PerlX::Maybe;
 
+use Net::Async::UPnP::Device;
 use Net::Async::UPnP '$SSDP_PORT', '$SSDP_ADDR', 'entity_decode';
 use Socket 'pack_sockaddr_in', 'inet_aton'; # IPv6 support?!
 use IO::Async::Socket;
@@ -287,7 +288,9 @@ sub start_search( $self, %options ) {
                             maybe urlbase      => $urlbase,
                         );
                         $self->found_devices->{$url} = $dev;
-                        return if $self->found_devices->{$dev->udn};
+                        if( $self->found_devices->{$dev->udn}) {
+                            return
+                        };
 
                         $self->found_devices->{$dev->udn} = $dev;
 

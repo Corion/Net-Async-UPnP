@@ -4,6 +4,7 @@ use 5.020; # signatures
 use feature 'signatures';
 no warnings 'experimental::signatures';
 
+use Net::Async::UPnP::Service;
 use URI;
 use XML::LibXML '1.170';
 
