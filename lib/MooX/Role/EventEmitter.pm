@@ -18,10 +18,13 @@ MooX::Role::EventEmitter - Event emitter role
 =head1 SYNOPSIS
 
   package My::Thing;
+  use 5.020;
+  use feature 'signatures';
+  no warnings 'experimental::signatures';
   use Moo 2;
   with 'MooX::RoleEventEmitter';
 
-  sub event_received( $ev ) {
+  sub event_received( $self, $ev ) {
       $self->emit( myevent => $ev );
   }
 
