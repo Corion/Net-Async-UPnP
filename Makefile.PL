@@ -50,8 +50,24 @@ my %module = (
     },
 
     PREREQ_PM => {
+        'Try::Tiny'                => 0,
+        'PerlX::Maybe'             => 0,
+        'Carp'                     => 0,
+        'Scalar::Util'             => 0, # weaken
+        'List::Util'               => 0, # max
+
         'Moo'                      => 2, # for some hashes-as-objects
         'MooX::Role::EventEmitter' => '0.01',
+
+        'XML::LibXML'              => 1.170, # using regexes as XML parser only works up to a point
+        'URI'                      => 0,
+        'Encode'                   => 0,
+        'Net::Address::IP::Local'  => 0,
+        'IO::Async::Socket'        => 0,
+        'Net::Async::HTTP'         => 0,
+        'Net::Async::HTTP::Server' => 0,
+        'HTTP::Request'            => 0,
+        'HTTP::Response'           => 0,
     },
     TEST_REQUIRES => {
         'Test::More'   => 0,

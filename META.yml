@@ -19,8 +19,22 @@ no_index:
     - t
     - inc
 requires:
+  Carp: '0'
+  Encode: '0'
+  HTTP::Request: '0'
+  HTTP::Response: '0'
+  IO::Async::Socket: '0'
+  List::Util: '0'
   Moo: '2'
   MooX::Role::EventEmitter: '0.01'
+  Net::Address::IP::Local: '0'
+  Net::Async::HTTP: '0'
+  Net::Async::HTTP::Server: '0'
+  PerlX::Maybe: '0'
+  Scalar::Util: '0'
+  Try::Tiny: '0'
+  URI: '0'
+  XML::LibXML: '1.17'
   perl: '5.020'
 resources:
   bugtracker: https://github.com/Corion/Net-Async-UPnP/issues
